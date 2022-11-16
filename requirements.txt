@@ -1,0 +1,13 @@
+fastapi
+uvicorn[standard]
+python-multipart
+keyvalue-sqlite==1.0.4
+multipart
+static-ffmpeg==2.3.0
+pathvalidate
+httpx
+filelock
+peewee==3.15.2
+peewee_extra_fields==2.8.2
+Pillow
+yt_dlp

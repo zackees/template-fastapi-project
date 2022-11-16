@@ -1,0 +1,13 @@
+*.pyc
+dist
+build
+.tox
+.pytest_cache
+.mypy_cache
+.vscode
+.git
+.vscode
+__pycache__
+package-lock.json
+data
+var
