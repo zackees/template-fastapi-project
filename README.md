@@ -12,3 +12,6 @@
 [![Actions Status](https://github.com/zackees/template-fastapi-project/workflows/Lint/badge.svg)](https://github.com/zackees/template-fastapi-project/actions/workflows/lint.yml)
 
 Example FastAPI Project with Docker, ready for Render.com / DigitalOcean
+
+Simply change the names `template-fastapi-project` and `template_fastapi_project` to `my-app` and `my_app` and then run `tox` to
+confirm that the changes are correct.
