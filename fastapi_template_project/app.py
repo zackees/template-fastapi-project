@@ -9,7 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse, JSONResponse
 from fastapi import FastAPI
 
-from myapp_xxx.version import VERSION
+from fastapi_template_project.version import VERSION
 
 STARTUP_DATETIME = datetime.now()
 
@@ -19,7 +19,7 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 def app_description() -> str:
     """Get the app description."""
     lines = []
-    lines.append("# myapp_xxx")
+    lines.append("# fastapi_template_project")
     lines.append("  * Version: " + VERSION)
     lines.append("  * Started at: " + str(STARTUP_DATETIME))
     return "\n".join(lines)

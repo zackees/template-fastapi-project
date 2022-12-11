@@ -11,9 +11,10 @@ from setuptools import Command, find_packages, setup
 # The directory containing this file
 HERE = os.path.dirname(__file__)
 
-NAME = "fastapi-template-project"
+REPO_NAME = "fastapi-template-project"
+PACKAGE_NAME = "fastapi_template_project"
 DESCRIPTION = "Server to run a webtorrent movie"
-URL = f"https://github.com/zackees/{NAME}"
+URL = f"https://github.com/zackees/{REPO_NAME}"
 EMAIL = "dont@email.me"
 AUTHOR = "Zach Vorhies"
 REQUIRES_PYTHON = ">=3.10.0"
@@ -27,7 +28,7 @@ with open(os.path.join(HERE, "README.md"), encoding="utf-8", mode="rt") as fd:
 with open(os.path.join(HERE, "requirements.txt"), encoding="utf-8", mode="rt") as fd:
     REQUIREMENTS = [line.strip() for line in fd.readlines() if line.strip()]
 
-with open(os.path.join(HERE, "myapp_xxx", "version.py"), encoding="utf-8", mode="rt") as fd:
+with open(os.path.join(HERE, PACKAGE_NAME, "version.py"), encoding="utf-8", mode="rt") as fd:
     for line in fd.readlines():
         if line.startswith("VERSION"):
             VERSION = line.split("=")[1].strip().strip('"')
@@ -73,7 +74,7 @@ class UploadCommand(Command):
 
 
 setup(
-    name=NAME,
+    name=PACKAGE_NAME,
     python_requires=REQUIRES_PYTHON,
     version=VERSION,
     description=DESCRIPTION,

@@ -3,6 +3,6 @@
 set -e
 
 . activate.sh
-flake8 myapp_xxx tests
-pylint myapp_xxx tests
-mypy myapp_xxx tests
+flake8 fastapi_template_project tests
+pylint fastapi_template_project tests
+mypy fastapi_template_project tests
