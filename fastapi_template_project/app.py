@@ -6,14 +6,18 @@ import os
 from datetime import datetime
 import uvicorn  # type: ignore
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import RedirectResponse, JSONResponse
+from fastapi.responses import RedirectResponse, JSONResponse, PlainTextResponse
 from fastapi import FastAPI
+
+from fastapi_template_project.log import make_logger, get_log_reversed
 
 from fastapi_template_project.version import VERSION
 
 STARTUP_DATETIME = datetime.now()
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+log = make_logger(__name__)
 
 
 def app_description() -> str:
@@ -54,6 +58,15 @@ async def index() -> RedirectResponse:
 async def log_file() -> JSONResponse:
     """TODO - Add description."""
     return JSONResponse({"hello": "world"})
+
+
+# get the log file
+@app.get("/log")
+def route_log() -> PlainTextResponse:
+    """Gets the log file."""
+    log.info("Log called")
+    out = get_log_reversed(100)
+    return PlainTextResponse(out)
 
 
 if __name__ == "__main__":
