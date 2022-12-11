@@ -65,7 +65,6 @@ async def log_file() -> JSONResponse:
 @app.get("/log")
 def route_log() -> PlainTextResponse:
     """Gets the log file."""
-    log.info("Log called")
     out = get_log_reversed(100)
     return PlainTextResponse(out)
 
