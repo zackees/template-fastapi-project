@@ -21,6 +21,23 @@
             "problemMatcher": []
         },
         {
+            "label": "Unit Test",
+            "type": "shell",
+            "command": ". activate && ./test.sh",
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceRoot}"
+            },
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "shared",
+                "clear": true
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "Tox: Lint and Test",
             "type": "shell",
             "command": "tox",
