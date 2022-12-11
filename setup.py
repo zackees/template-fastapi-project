@@ -11,7 +11,7 @@ from setuptools import Command, find_packages, setup
 # The directory containing this file
 HERE = os.path.dirname(__file__)
 
-NAME = "givesendgoscraper"
+NAME = "myapp_xxx"
 DESCRIPTION = "Server to run a webtorrent movie"
 URL = f"https://github.com/zackees/{NAME}"
 EMAIL = "dont@email.me"

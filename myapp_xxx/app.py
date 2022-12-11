@@ -1,33 +1,25 @@
 """
-    Give send go response
+    app worker
 """
 
-# pylint: disable=fixme,broad-except,logging-fstring-interpolation,too-many-locals,redefined-builtin,invalid-name,too-many-branches,too-many-return-statements
-
-import uvicorn  # type: ignore
-
 import os
-from givesendgoscraper.version import VERSION
-from fastapi import FastAPI, Request
-from fastapi.middleware.cors import CORSMiddleware
 from datetime import datetime
-from fastapi.responses import RedirectResponse, PlainTextResponse, JSONResponse
+import uvicorn  # type: ignore
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import RedirectResponse, JSONResponse
+from fastapi import FastAPI
 
-from keyvalue_sqlite import KeyValueSqlite
+from myapp_xxx.version import VERSION
 
 STARTUP_DATETIME = datetime.now()
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-DATA_ROOT = os.path.join(PROJECT_ROOT, "data")
-DB_PATH = f"{PROJECT_ROOT}/data/db.sqlite"
-
-os.makedirs(os.path.dirname(DB_PATH), exist_ok=True)
 
 
 def app_description() -> str:
     """Get the app description."""
     lines = []
-    lines.append("# Givesendgoscraper")
+    lines.append("# myapp_xxx")
     lines.append("  * Version: " + VERSION)
     lines.append("  * Started at: " + str(STARTUP_DATETIME))
     return "\n".join(lines)
@@ -58,14 +50,11 @@ async def index() -> RedirectResponse:
     return RedirectResponse(url="/docs", status_code=302)
 
 
-# Redirect to favicon.ico
-@app.get("/favicon.ico", include_in_schema=False)
-async def favicon() -> RedirectResponse:
-    """Returns favico file."""
-    return RedirectResponse(url="/www/favicon.ico")
-
-
 @app.get("/get")
-async def log_file(request: Request) -> JSONResponse:
+async def log_file() -> JSONResponse:
     """TODO - Add description."""
-    return {"todo": "todo"}
+    return JSONResponse({"hello": "world"})
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="localhost", port=8080)
