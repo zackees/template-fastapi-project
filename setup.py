@@ -11,12 +11,12 @@ from setuptools import Command, find_packages, setup
 # The directory containing this file
 HERE = os.path.dirname(__file__)
 
-NAME = "myapp_xxx"
+NAME = "fastapi-template-project"
 DESCRIPTION = "Server to run a webtorrent movie"
 URL = f"https://github.com/zackees/{NAME}"
 EMAIL = "dont@email.me"
 AUTHOR = "Zach Vorhies"
-REQUIRES_PYTHON = ">=3.10.4"
+REQUIRES_PYTHON = ">=3.10.0"
 VERSION = None
 
 
