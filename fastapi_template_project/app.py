@@ -4,13 +4,14 @@
 
 import os
 from datetime import datetime
+from tempfile import TemporaryDirectory
 import uvicorn  # type: ignore
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse, JSONResponse, PlainTextResponse
-from fastapi import FastAPI
+from fastapi import FastAPI, UploadFile, File  # type: ignore
 
+from fastapi_template_project.util import async_download
 from fastapi_template_project.log import make_logger, get_log_reversed
-
 from fastapi_template_project.version import VERSION
 
 STARTUP_DATETIME = datetime.now()
@@ -67,6 +68,21 @@ def route_log() -> PlainTextResponse:
     log.info("Log called")
     out = get_log_reversed(100)
     return PlainTextResponse(out)
+
+
+@app.post("/upload")
+async def route_upload(
+    datafile: UploadFile = File(...),
+) -> PlainTextResponse:
+    """TODO - Add description."""
+    log.info("Upload called with file: %s", datafile.filename)
+    with TemporaryDirectory() as temp_dir:
+        temp_datapath: str = os.path.join(temp_dir, datafile.filename)
+        await async_download(datafile, temp_datapath)
+        await datafile.close()
+        log.info("Downloaded file %s to %s", datafile.filename, temp_datapath)
+        # shutil.move(temp_path, final_path)
+    return PlainTextResponse(f"Uploaded {datafile.filename} to {temp_datapath}")
 
 
 if __name__ == "__main__":

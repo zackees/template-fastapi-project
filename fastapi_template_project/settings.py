@@ -13,6 +13,7 @@ LOG_SIZE = 512 * 1024
 LOG_HISTORY = 20
 LOGGING_FMT = "%(levelname)s %(asctime)s %(filename)s:%(lineno)s (%(funcName)s) - %(message)s"
 LOGGING_USE_GZIP = True
+UPLOAD_CHUNK_SIZE = 1024 * 64
 
 os.makedirs(DATA_DIR, exist_ok=True)
 os.makedirs(DATA_UPLOAD_DIR, exist_ok=True)
