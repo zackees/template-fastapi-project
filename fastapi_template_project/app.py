@@ -66,7 +66,9 @@ async def log_file() -> JSONResponse:
 @app.get("/log")
 def route_log() -> PlainTextResponse:
     """Gets the log file."""
-    out = get_log_reversed(100)
+    out = get_log_reversed(100).strip()
+    if not out:
+        out = "(Empty log file)"
     return PlainTextResponse(out)
 
 
