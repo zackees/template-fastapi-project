@@ -2,7 +2,6 @@
 Logging module for personalmonitor_collector.
 """
 
-import os
 from pathlib import Path
 from logging import getLogger, INFO, Logger, Formatter, StreamHandler
 from concurrent_log_handler import ConcurrentRotatingFileHandler  # type: ignore
@@ -19,11 +18,7 @@ from fastapi_template_project.settings import (
 def make_logger(name: str) -> Logger:
     """TODO - Add description."""
     log = getLogger(name)
-    # Use an absolute path to prevent file rotation trouble.
-    if not os.path.exists(LOG_SYSTEM):
-        os.makedirs(os.path.dirname(LOG_SYSTEM), exist_ok=True)
-        Path(LOG_SYSTEM).touch(exist_ok=True)
-
+    Path(LOG_SYSTEM).touch(exist_ok=True)
     # Rotate log after reaching LOG_SIZE, keep LOG_HISTORY old copies.
     rotate_handler = ConcurrentRotatingFileHandler(
         LOG_SYSTEM,
