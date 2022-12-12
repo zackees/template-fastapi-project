@@ -20,18 +20,19 @@ PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 log = make_logger(__name__)
 
+APP_DISPLAY_NAME = "FastAPI Template Project"
+
 
 def app_description() -> str:
     """Get the app description."""
     lines = []
-    lines.append("# fastapi_template_project")
     lines.append("  * Version: " + VERSION)
     lines.append("  * Started at: " + str(STARTUP_DATETIME))
     return "\n".join(lines)
 
 
 app = FastAPI(
-    title="Video Server",
+    title=APP_DISPLAY_NAME,
     version=VERSION,
     redoc_url=None,
     license_info={
