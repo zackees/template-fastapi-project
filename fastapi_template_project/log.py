@@ -3,6 +3,7 @@ Logging module for personalmonitor_collector.
 """
 
 import os
+from pathlib import Path
 from logging import getLogger, INFO, Logger, Formatter, StreamHandler
 from concurrent_log_handler import ConcurrentRotatingFileHandler  # type: ignore
 from file_read_backwards import FileReadBackwards  # type: ignore
@@ -19,10 +20,18 @@ def make_logger(name: str) -> Logger:
     """TODO - Add description."""
     log = getLogger(name)
     # Use an absolute path to prevent file rotation trouble.
-    logfile = os.path.join(LOG_SYSTEM)
+    if not os.path.exists(LOG_SYSTEM):
+        os.makedirs(os.path.dirname(LOG_SYSTEM), exist_ok=True)
+        Path(LOG_SYSTEM).touch(exist_ok=True)
+
     # Rotate log after reaching LOG_SIZE, keep LOG_HISTORY old copies.
     rotate_handler = ConcurrentRotatingFileHandler(
-        logfile, "a", LOG_SIZE, LOG_HISTORY, use_gzip=LOGGING_USE_GZIP, encoding="utf-8"
+        LOG_SYSTEM,
+        "a",
+        LOG_SIZE,
+        LOG_HISTORY,
+        use_gzip=LOGGING_USE_GZIP,
+        encoding="utf-8",
     )
     rotate_handler.setFormatter(Formatter(LOGGING_FMT))
     log.addHandler(rotate_handler)
