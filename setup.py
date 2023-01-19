@@ -13,7 +13,7 @@ HERE = os.path.dirname(__file__)
 
 REPO_NAME = "fastapi-template-project"
 PACKAGE_NAME = "fastapi_template_project"
-DESCRIPTION = "Server to run a webtorrent movie"
+DESCRIPTION = "Change this to your description"
 URL = f"https://github.com/zackees/{REPO_NAME}"
 EMAIL = "dont@email.me"
 AUTHOR = "Zach Vorhies"
