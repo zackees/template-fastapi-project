@@ -4,12 +4,12 @@
 #### Platform tests
 
 [![Actions Status](../../workflows/MacOS_Tests/badge.svg)](../../actions/workflows/test_macos.yml)
-[![Actions Status](https://github.com/zackees/template-fastapi-project/workflows/Win_Tests/badge.svg)](https://github.com/zackees/template-fastapi-project/actions/workflows/test_win.yml)
-[![Actions Status](https://github.com/zackees/template-fastapi-project/workflows/Ubuntu_Tests/badge.svg)](https://github.com/zackees/template-fastapi-project/actions/workflows/test_ubuntu.yml)
+[![Actions Status](../../workflows/Win_Tests/badge.svg)](../../actions/workflows/test_win.yml)
+[![Actions Status](../../workflows/Ubuntu_Tests/badge.svg)](../../actions/workflows/test_ubuntu.yml)
 
 #### Lint
 
-[![Actions Status](https://github.com/zackees/template-fastapi-project/workflows/Lint/badge.svg)](https://github.com/zackees/template-fastapi-project/actions/workflows/lint.yml)
+[![Actions Status](../../workflows/Lint/badge.svg)](../../actions/workflows/lint.yml)
 
 Example FastAPI Project with Docker, ready for Render.com / DigitalOcean
 
