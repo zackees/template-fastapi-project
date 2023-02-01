@@ -8,9 +8,12 @@
     source activate.sh
 
   Notes:
-    This script is tested to work using python2 and python3 from a fresh install. The only side effect
-    of running this script is that virtualenv will be globally installed if it isn't already.
+    This script is tested to work using python2 and python3 from a fresh install. The only side
+    effect of running this script is that virtualenv will be globally installed if it isn't
+    already.
 """
+
+# pylint: disable=all
 
 import os
 import shutil
@@ -20,9 +23,15 @@ import sys
 # This activation script adds the ability to run it from any path and also
 # aliasing pip3 and python3 to pip/python so that this works across devices.
 _ACTIVATE_SH = """
+#!/bin/bash
+set -e
 function abs_path {
   (cd "$(dirname '$1')" &>/dev/null && printf "%s/%s" "$PWD" "${1##*/}")
 }
+# if make_venv dir is not present, then make it
+if [ ! -d "venv" ]; then
+  python make_venv.py
+fi
 . $( dirname $(abs_path ${BASH_SOURCE[0]}))/venv/bin/activate
 export PATH=$( dirname $(abs_path ${BASH_SOURCE[0]}))/:$PATH
 alias python3=python
@@ -65,6 +74,4 @@ with open("activate.sh", "wt") as fd:
     fd.write(_ACTIVATE_SH)
 
 
-print(
-    'Now use ". activate.sh" (at the project root dir) to enter into the environment.'
-)
+print('Now use ". activate.sh" (at the project root dir) to enter into the environment.')

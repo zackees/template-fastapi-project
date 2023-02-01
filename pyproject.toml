@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "template-python-project"
+description = "Change this to a description of your project."
+readme = "README.md"
+requires-python = ">=3.7"
+keywords = ["template-python-cmd"]
+license = { text = "BSD 3-Clause License" }
+classifiers = ["Programming Language :: Python :: 3"]
+dependencies = [
+
+]
+# Change this with the version number bump.
+# Also make the change in zcmds/version.py
+version = "1.0.0"

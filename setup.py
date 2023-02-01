@@ -1,106 +1,38 @@
-# pylint: disable=missing-function-docstring
-# pylint: disable=consider-using-f-string
-# pylint: disable=missing-module-docstring
+"""
+Setup file.
+"""
 
 import os
-import sys
-from shutil import rmtree
+import re
 
-from setuptools import Command, find_packages, setup
-
-# The directory containing this file
-HERE = os.path.dirname(__file__)
-
-REPO_NAME = "fastapi-template-project"
-PACKAGE_NAME = "fastapi_template_project"
-DESCRIPTION = "Change this to your description"
-URL = f"https://github.com/zackees/{REPO_NAME}"
-EMAIL = "dont@email.me"
-AUTHOR = "Zach Vorhies"
-REQUIRES_PYTHON = ">=3.10.0"
-VERSION = None
+import setuptools
 
 
-# The text of the README file
-with open(os.path.join(HERE, "README.md"), encoding="utf-8", mode="rt") as fd:
-    LONG_DESCRIPTION = fd.read()
+URL = "https://github.com/zackees/fastapi-template-project"
 
-with open(os.path.join(HERE, "requirements.txt"), encoding="utf-8", mode="rt") as fd:
-    REQUIREMENTS = [line.strip() for line in fd.readlines() if line.strip()]
-
-with open(os.path.join(HERE, PACKAGE_NAME, "version.py"), encoding="utf-8", mode="rt") as fd:
-    for line in fd.readlines():
-        if line.startswith("VERSION"):
-            VERSION = line.split("=")[1].strip().strip('"')
-            break
-
-assert VERSION
+HERE = os.path.dirname(os.path.abspath(__file__))
 
 
-class UploadCommand(Command):
-    """Support setup.py upload."""
-
-    description = "Build and publish the package."
-    user_options = []
-
-    @staticmethod
-    def status(s):
-        pass
-
-    def initialize_options(self):
-        pass
-
-    def finalize_options(self):
-        pass
-
-    def run(self):
-        try:
-            self.status("Removing previous builds…")
-            rmtree(os.path.join(HERE, "dist"))
-        except OSError:
-            pass
-
-        self.status("Building Source and Wheel (universal) distribution…")
-        os.system('"{0}" setup.py sdist bdist_wheel --universal'.format(sys.executable))
-
-        self.status("Uploading the package to PyPI via Twine…")
-        os.system("twine upload dist/*")
-
-        self.status("Pushing git tags…")
-        os.system("git tag v{0}".format(VERSION))
-        os.system("git push --tags")
-
-        sys.exit()
+def get_readme() -> str:
+    """Get the contents of the README file."""
+    readme = os.path.join(HERE, "README.md")
+    with open(readme, encoding="utf-8", mode="r") as readme_file:
+        readme_lines = readme_file.readlines()
+    for i, line in enumerate(readme_lines):
+        if "../../" in line:
+            # Transform the relative links to absolute links
+            output_string = re.sub(r"(\.\./\.\.)", f"{URL}", line, count=1)
+            output_string = re.sub(r"(\.\./\.\.)", f"{URL}", output_string)
+            readme_lines[i] = output_string
+    return "".join(readme_lines)
 
 
-setup(
-    name=PACKAGE_NAME,
-    python_requires=REQUIRES_PYTHON,
-    version=VERSION,
-    description=DESCRIPTION,
-    long_description=LONG_DESCRIPTION,
-    long_description_content_type="text/markdown",
-    url=URL,
-    author="Zach Vorhies",
-    author_email="dont@email.me",
-    license="MIT",
-    classifiers=[
-        "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python :: 3.6",
-        "Programming Language :: Python :: 3.9",
-        "Operating System :: Microsoft :: Windows",
-        "Operating System :: POSIX",
-        "Operating System :: MacOS :: MacOS X",
-        "Environment :: Console",
-    ],
-    install_requires=REQUIREMENTS,
-    packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
-    package_data={},
-    include_package_data=True,
-    extras_require={
-        "test": ["pytest"],
-    },
-    cmdclass={
-        "upload": UploadCommand,
-    },
-)
+if __name__ == "__main__":
+    setuptools.setup(
+        maintainer="Zachary Vorhies",
+        long_description=get_readme(),
+        long_description_content_type="text/markdown",
+        url=URL,
+        package_data={"": ["assets/example.txt"]},
+        include_package_data=True,
+    )
