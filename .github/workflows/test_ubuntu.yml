@@ -22,7 +22,7 @@ jobs:
         key: ${{ runner.os }}-pip-${{ hashFiles('**/setup.py') }}
         restore-keys: |
           ${{ runner.os }}-pip-
-    - name: Install Dev
-      run: ./install_dev.sh
+    - name: Install Project
+      run: pip install -e .
     - name: Run unit tests
       run:  python -m unittest discover tests
