@@ -22,5 +22,7 @@ dependencies = [
     "colorama"
 ]
 # Change this with the version number bump.
-# Also make the change in zcmds/version.py
 version = "1.0.0"
+
+[tool.mypy]
+ignore_missing_imports = true
