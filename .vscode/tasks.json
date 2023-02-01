@@ -6,7 +6,7 @@
         {
             "label": "Lint",
             "type": "shell",
-            "command": ". activate && ./lint.sh",
+            "command": ". activate.sh && ./lint.sh",
             "group": "build",
             "options": {
                 "cwd": "${workspaceRoot}"
@@ -23,7 +23,7 @@
         {
             "label": "Unit Test",
             "type": "shell",
-            "command": ". activate && ./test.sh",
+            "command": ". activate.sh && ./test.sh",
             "group": "build",
             "options": {
                 "cwd": "${workspaceRoot}"
