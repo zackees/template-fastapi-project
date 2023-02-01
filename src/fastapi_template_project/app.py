@@ -6,6 +6,7 @@ import os
 from datetime import datetime
 from tempfile import TemporaryDirectory
 import uvicorn  # type: ignore
+from colorama import just_fix_windows_console
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse, JSONResponse, PlainTextResponse
 from fastapi import FastAPI, UploadFile, File  # type: ignore
@@ -13,6 +14,8 @@ from fastapi import FastAPI, UploadFile, File  # type: ignore
 from fastapi_template_project.util import async_download
 from fastapi_template_project.log import make_logger, get_log_reversed
 from fastapi_template_project.version import VERSION
+
+just_fix_windows_console()
 
 STARTUP_DATETIME = datetime.now()
 
@@ -87,5 +90,10 @@ async def route_upload(
     return PlainTextResponse(f"Uploaded {datafile.filename} to {temp_datapath}")
 
 
-if __name__ == "__main__":
+def main() -> None:
+    """Run the app."""
     uvicorn.run(app, host="localhost", port=8080)
+
+
+if __name__ == "__main__":
+    main()
