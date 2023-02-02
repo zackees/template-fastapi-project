@@ -6,7 +6,8 @@ ENV LANG=C.UTF-8
 # All the useful binary commands.
 RUN apt-get update && apt-get install -y --force-yes --no-install-recommends \
     apt-transport-https \
-    ca-certificates
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 RUN pip install --upgrade pip
 # for sending files to other devices
