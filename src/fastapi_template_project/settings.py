@@ -4,7 +4,7 @@ Settings
 
 import os
 
-PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 DATA_DIR = os.path.join(PROJECT_ROOT, "data")
 DATA_UPLOAD_DIR = os.path.join(DATA_DIR, "upload")
 LOG_DIR = os.path.join(DATA_DIR, "logs")
