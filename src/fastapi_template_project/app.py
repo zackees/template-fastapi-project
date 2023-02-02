@@ -92,6 +92,9 @@ async def route_upload(
 
 def main() -> None:
     """Run the app."""
+    import webbrowser  # pylint: disable=import-outside-toplevel
+
+    webbrowser.open("http://localhost:8080")
     uvicorn.run(app, host="localhost", port=8080)
 
 
