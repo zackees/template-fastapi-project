@@ -4,15 +4,17 @@
 
 import os
 from datetime import datetime
+from hmac import compare_digest
 from tempfile import TemporaryDirectory
 
 import uvicorn  # type: ignore
 from colorama import just_fix_windows_console
-from fastapi import FastAPI, File, UploadFile  # type: ignore
+from fastapi import FastAPI, File, Header, UploadFile  # type: ignore
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, PlainTextResponse, RedirectResponse
 
 from fastapi_template_project.log import get_log_reversed, make_logger
+from fastapi_template_project.settings import API_KEY, IS_TEST
 from fastapi_template_project.util import async_download
 from fastapi_template_project.version import VERSION
 
@@ -53,6 +55,23 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+if IS_TEST:
+    ApiKeyHeader = Header(None)
+else:
+    ApiKeyHeader = Header(...)
+
+
+def is_authenticated(api_key: str | None) -> bool:
+    """Checks if the request is authenticated."""
+    if IS_TEST:
+        return True
+    if api_key is None:
+        return False
+    out = compare_digest(api_key, API_KEY)
+    if not out:
+        log.warning("Invalid API key attempted: %s", api_key)
+    return out
+
 
 @app.get("/", include_in_schema=False)
 async def index() -> RedirectResponse:
@@ -76,6 +95,14 @@ def route_log() -> PlainTextResponse:
     return PlainTextResponse(out)
 
 
+@app.get("/protected")
+async def protected_route(api_key: str = ApiKeyHeader) -> PlainTextResponse:
+    """TODO - Add description."""
+    if not is_authenticated(api_key):
+        return PlainTextResponse("Not authenticated", status_code=401)
+    return PlainTextResponse("Authenticated")
+
+
 @app.post("/upload")
 async def route_upload(
     datafile: UploadFile = File(...),
@@ -94,10 +121,13 @@ async def route_upload(
 def main() -> None:
     """Start the app."""
     import webbrowser  # pylint: disable=import-outside-toplevel
+
     port = 8080
 
     webbrowser.open(f"http://localhost:{port}")
-    uvicorn.run("template_fastapi_project.app:app", host="localhost", port=port, reload=True)
+    uvicorn.run(
+        "template_fastapi_project.app:app", host="localhost", port=port, reload=True
+    )
 
 
 if __name__ == "__main__":
