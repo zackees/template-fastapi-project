@@ -33,7 +33,12 @@ def app_description() -> str:
     """Get the app description."""
     lines = []
     lines.append("  * Version: " + VERSION)
-    lines.append("  * Started at: " + str(STARTUP_DATETIME))
+    lines.append("  * Started at: " + STARTUP_DATETIME.isoformat() + " UTC")
+    if IS_TEST:
+        lines.append("  * Running in TEST mode")
+        lines.append("  * API_KEY: " + API_KEY)
+    else:
+        lines.append("  * Running in PRODUCTION mode")
     return "\n".join(lines)
 
 
