@@ -91,11 +91,12 @@ async def route_upload(
 
 
 def main() -> None:
-    """Run the app."""
+    """Start the app."""
     import webbrowser  # pylint: disable=import-outside-toplevel
+    port = 8080
 
-    webbrowser.open("http://localhost:8080")
-    uvicorn.run(app, host="localhost", port=8080)
+    webbrowser.open(f"http://localhost:{port}")
+    uvicorn.run("template_fastapi_project.app:app", host="localhost", port=port, reload=True)
 
 
 if __name__ == "__main__":
