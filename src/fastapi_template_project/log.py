@@ -2,16 +2,18 @@
 Logging module for personalmonitor_collector.
 """
 
+from logging import INFO, Formatter, Logger, StreamHandler, getLogger
 from pathlib import Path
-from logging import getLogger, INFO, Logger, Formatter, StreamHandler
+
 from concurrent_log_handler import ConcurrentRotatingFileHandler  # type: ignore
 from file_read_backwards import FileReadBackwards  # type: ignore
+
 from fastapi_template_project.settings import (
-    LOG_SIZE,
     LOG_HISTORY,
+    LOG_SIZE,
+    LOG_SYSTEM,
     LOGGING_FMT,
     LOGGING_USE_GZIP,
-    LOG_SYSTEM,
 )
 
 

@@ -5,14 +5,15 @@
 import os
 from datetime import datetime
 from tempfile import TemporaryDirectory
+
 import uvicorn  # type: ignore
 from colorama import just_fix_windows_console
+from fastapi import FastAPI, File, UploadFile  # type: ignore
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import RedirectResponse, JSONResponse, PlainTextResponse
-from fastapi import FastAPI, UploadFile, File  # type: ignore
+from fastapi.responses import JSONResponse, PlainTextResponse, RedirectResponse
 
+from fastapi_template_project.log import get_log_reversed, make_logger
 from fastapi_template_project.util import async_download
-from fastapi_template_project.log import make_logger, get_log_reversed
 from fastapi_template_project.version import VERSION
 
 just_fix_windows_console()
