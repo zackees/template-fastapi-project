@@ -18,9 +18,8 @@ from androidmonitor_backend.settings import (
 )
 
 
-def make_logger(name: str, logname: str | None = None) -> Logger:
+def _get_log_path(logname: str | None = None) -> str:
     """TODO - Add description."""
-    log = getLogger(name)
     if logname is None:
         logname = LOG_SYSTEM
     else:
@@ -29,9 +28,16 @@ def make_logger(name: str, logname: str | None = None) -> Logger:
             # make it relative to the project root
             logname = str(Path(LOG_DIR, logname))
     Path(logname).touch(exist_ok=True)
+    return logname
+
+
+def make_logger(name: str, logname: str | None = None) -> Logger:
+    """TODO - Add description."""
+    log = getLogger(name)
+    logpath = _get_log_path(logname)
     # Rotate log after reaching LOG_SIZE, keep LOG_HISTORY old copies.
     rotate_handler = ConcurrentRotatingFileHandler(
-        LOG_SYSTEM,
+        logpath,
         "a",
         LOG_SIZE,
         LOG_HISTORY,
