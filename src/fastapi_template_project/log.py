@@ -12,6 +12,7 @@ from androidmonitor_backend.settings import (
     LOG_HISTORY,
     LOG_SIZE,
     LOG_SYSTEM,
+    LOG_DIR,
     LOGGING_FMT,
     LOGGING_USE_GZIP,
 )
@@ -20,7 +21,13 @@ from androidmonitor_backend.settings import (
 def make_logger(name: str, logname: str | None = None) -> Logger:
     """TODO - Add description."""
     log = getLogger(name)
-    logname = logname or LOG_SYSTEM
+    if logname is None:
+        logname = LOG_SYSTEM
+    else:
+        # if not an absolute path
+        if not Path(logname).is_absolute():
+            # make it relative to the project root
+            logname = Path(LOG_DIR, logname)
     Path(logname).touch(exist_ok=True)
     # Rotate log after reaching LOG_SIZE, keep LOG_HISTORY old copies.
     rotate_handler = ConcurrentRotatingFileHandler(
