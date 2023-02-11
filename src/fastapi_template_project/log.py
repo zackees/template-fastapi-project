@@ -27,7 +27,7 @@ def make_logger(name: str, logname: str | None = None) -> Logger:
         # if not an absolute path
         if not Path(logname).is_absolute():
             # make it relative to the project root
-            logname = Path(LOG_DIR, logname)
+            logname = str(Path(LOG_DIR, logname))
     Path(logname).touch(exist_ok=True)
     # Rotate log after reaching LOG_SIZE, keep LOG_HISTORY old copies.
     rotate_handler = ConcurrentRotatingFileHandler(
