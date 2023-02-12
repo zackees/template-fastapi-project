@@ -1,11 +1,1 @@
-
-# If $DATA_ROOT is unset
-if [ -z "$DATA_ROOT" ]; then
-    DATA_ROOT="/app/var/data"
-fi
-export DATA_ROOT
-set -e
-mkdir -p $DATA_ROOT
-# First launch the uvicorn server
-pm2 start ./unicorn.sh
-echo DATA_ROOT is $DATA_ROOT
+uvicorn --host 0.0.0.0 --port 80 --reload --reload-dir restart --workers 8 --forwarded-allow-ips=* fastapi_template_project.app:app
