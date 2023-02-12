@@ -16,4 +16,4 @@ COPY . .
 RUN python -m pip install --no-cache-dir -e .
 # Expose the port and then launch the app.
 EXPOSE 80
-CMD ["uvicorn", "--host", "0.0.0.0", "--port", "80", "fastapi_template_project.app:app"]
+CMD ["/bin/bash", "entry_point.sh"]
