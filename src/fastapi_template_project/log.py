@@ -8,7 +8,7 @@ from pathlib import Path
 from concurrent_log_handler import ConcurrentRotatingFileHandler  # type: ignore
 from file_read_backwards import FileReadBackwards  # type: ignore
 
-from androidmonitor_backend.settings import (
+from fastapi_template_project.settings import (
     LOG_HISTORY,
     LOG_SIZE,
     LOG_SYSTEM,
