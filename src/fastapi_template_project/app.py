@@ -113,6 +113,8 @@ async def route_upload(
     datafile: UploadFile = File(...),
 ) -> PlainTextResponse:
     """TODO - Add description."""
+    if datafile.filename is None:
+        return PlainTextResponse("No filename", status_code=400)
     log.info("Upload called with file: %s", datafile.filename)
     with TemporaryDirectory() as temp_dir:
         temp_datapath: str = os.path.join(temp_dir, datafile.filename)
