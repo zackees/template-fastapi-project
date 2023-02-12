@@ -24,5 +24,12 @@ dependencies = [
 # Change this with the version number bump.
 version = "1.0.0"
 
+[tool.pylint."MESSAGES CONTROL"]
+good-names = [
+    "c",
+    "i",
+    "ok"
+]
+
 [tool.mypy]
 ignore_missing_imports = true
