@@ -4,6 +4,8 @@ set -e
 
 echo Running black.
 black src tests
+echo Running isort src tests
+isort --profile black src tests
 echo Running flake8
 flake8 src tests
 echo Running pylint src
