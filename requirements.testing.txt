@@ -3,5 +3,6 @@ mypy
 pylint
 pytest
 black
+isort
 tox
 requests
