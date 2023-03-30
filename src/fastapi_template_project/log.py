@@ -8,17 +8,17 @@ from pathlib import Path
 from concurrent_log_handler import ConcurrentRotatingFileHandler  # type: ignore
 from file_read_backwards import FileReadBackwards  # type: ignore
 
-from fastapi_template_project.settings import (
+from blast_scraper.settings import (
+    LOG_DIR,
     LOG_HISTORY,
     LOG_SIZE,
     LOG_SYSTEM,
-    LOG_DIR,
     LOGGING_FMT,
     LOGGING_USE_GZIP,
 )
 
 
-def _get_log_path(logname: str | None = None) -> str:
+def _get_log_path(logname: str | None = None, clear: bool = False) -> str:
     """TODO - Add description."""
     if logname is None:
         logname = LOG_SYSTEM
@@ -31,14 +31,15 @@ def _get_log_path(logname: str | None = None) -> str:
     return logname
 
 
-def make_logger(name: str, logname: str | None = None) -> Logger:
+def make_logger(name: str, logname: str | None = None, clear: bool = False) -> Logger:
     """TODO - Add description."""
     log = getLogger(name)
     logpath = _get_log_path(logname)
     # Rotate log after reaching LOG_SIZE, keep LOG_HISTORY old copies.
+    mode = "w" if clear else "a"
     rotate_handler = ConcurrentRotatingFileHandler(
         logpath,
-        "a",
+        mode,
         LOG_SIZE,
         LOG_HISTORY,
         use_gzip=LOGGING_USE_GZIP,
