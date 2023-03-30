@@ -18,7 +18,7 @@ from blast_scraper.settings import (
 )
 
 
-def _get_log_path(logname: str | None = None, clear: bool = False) -> str:
+def _get_log_path(logname: str | None = None) -> str:
     """TODO - Add description."""
     if logname is None:
         logname = LOG_SYSTEM
