@@ -6,7 +6,8 @@
         {
             "label": "Lint",
             "type": "shell",
-            "command": ". ./activate.sh && ./lint.sh",
+            // Note: Don't source ./activate.sh as it doesn't work.
+            "command": "./activate.sh && ./lint.sh",
             "group": "build",
             "options": {
                 "cwd": "${workspaceRoot}"
@@ -23,7 +24,7 @@
         {
             "label": "Unit Test",
             "type": "shell",
-            "command": ". ./activate.sh && ./test.sh",
+            "command": "./activate.sh && ./test.sh",
             "group": "build",
             "options": {
                 "cwd": "${workspaceRoot}"
@@ -57,7 +58,7 @@
         {
             "label": "Run Local",
             "type": "shell",
-            "command": ". ./activate.sh && python run_dev.py",
+            "command": "./activate.sh && python run_dev.py",
             "group": "build",
             "options": {
                 "cwd": "${workspaceRoot}"
