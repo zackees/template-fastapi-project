@@ -1,0 +1,8 @@
+fastapi
+uvicorn[standard]
+python-multipart
+multipart
+pathvalidate
+concurrent-log-handler
+file_read_backwards
+colorama
