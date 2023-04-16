@@ -15,7 +15,7 @@ if [ ! -d "venv" ]; then
 fi
 # if IN_ACTIVATED_ENV is set, then we are already in the venv
 if [ -n "$IN_ACTIVATED_ENV" ]; then
-  return
+  exit 0
 fi
 . $( dirname $(abs_path ${BASH_SOURCE[0]}))/venv/bin/activate
 export PATH=$( dirname $(abs_path ${BASH_SOURCE[0]}))/:$PATH
