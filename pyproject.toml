@@ -11,18 +11,12 @@ requires-python = ">=3.7"
 keywords = ["template-fastapi-project"]
 license = { text = "BSD 3-Clause License" }
 classifiers = ["Programming Language :: Python :: 3"]
-dependencies = [
-    "fastapi",
-    "uvicorn[standard]",
-    "python-multipart",
-    "multipart",
-    "pathvalidate",
-    "concurrent-log-handler",
-    "file_read_backwards",
-    "colorama"
-]
+dynamic = ["dependencies"]
 # Change this with the version number bump.
 version = "1.0.0"
+
+[tool.setuptools.dynamic]
+dependencies = {file = ["requirements.txt"]}
 
 [tool.pylint."MESSAGES CONTROL"]
 good-names = [
