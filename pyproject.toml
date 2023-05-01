@@ -18,6 +18,9 @@ version = "1.0.0"
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}
 
+[tool.ruff]
+line-length = 200
+
 [tool.pylint."MESSAGES CONTROL"]
 good-names = [
     "c",
