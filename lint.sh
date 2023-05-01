@@ -1,7 +1,11 @@
 #! /bin/bash
 
 set -e
-
+. ./activate.sh
+echo Running ruff src
+ruff --fix src
+echo Running ruff tests
+ruff --fix tests
 echo Running black.
 black src tests
 echo Running isort src tests
