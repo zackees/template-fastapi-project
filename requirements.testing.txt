@@ -7,3 +7,4 @@ black
 isort
 tox
 requests
+pytest-xdist
