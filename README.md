@@ -1,5 +1,7 @@
 # template-fastapi-project
 
+This template is used by https://github.com/zackees/make-fastapi-app
+
 
 #### Platform tests
 
