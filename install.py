@@ -137,30 +137,6 @@ def check_platform() -> None:
             sys.exit(1)
 
 
-def npm_install() -> None:
-    _exe("cd www && npm install", HERE)
-    _exe("cd www && npm run build", HERE)
-
-
-def install_php() -> None:
-    if shutil.which("php"):
-        print(
-            f"Skipping php install because it is already installed at {shutil.which('php')}"
-        )
-        return
-    if sys.platform == "win32":
-        cmd = """choco install php --version 8.2 --params '"/ThreadSafe""'"""
-        print(f'\n\nPlease install php via chocolatey: "{cmd}"\n\n')
-        return
-    if sys.platform == "darwin":
-        print('\n\nPlease install php via homebrew: "brew install php@8.2"\n\n')
-        return
-    if sys.platform == "linux":
-        print('\n\nPlease install php via apt: "sudo apt install php"\n\n')
-        return
-    print(f"Unknown platform {sys.platform}, please install php manually.")
-
-
 def modify_activate_script() -> None:
     path = os.path.join(HERE, "venv", "bin", "activate")
     text_to_add = '\nPATH="./:$PATH"\n' + "export PATH"
@@ -189,7 +165,6 @@ def main() -> int:
     else:
         print(f'{os.path.abspath("venv")} already exists')
     assert os.path.exists("activate.sh"), "activate.sh does not exist"
-    npm_install()
     modify_activate_script()
     # Note that we can now just use pip instead of pip3 because
     # we are now in the virtual environment.
