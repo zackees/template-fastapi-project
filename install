@@ -21,6 +21,9 @@ elif [ "$kernelName" == "Linux" ]; then
     python install.py
 elif [[ "$kernelName" == CYGWIN* ]] || [[ "$kernelName" == MINGW32* ]] || [[ "$kernelName" == MSYS* ]] || [[ "$kernelName" == MINGW* ]]; then
    echo "Windows OS detected"
+   python -m venv venv
+   source venv/Scripts/activate
+   python install.py
 else
     # Error
     echo "Unknown operating system: $kernelName"
