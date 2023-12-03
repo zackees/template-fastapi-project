@@ -25,4 +25,4 @@ jobs:
     - name: Install Dev
       run: ./install_dev.sh
     - name: Run Lint
-      run: . activate.sh && ./lint.sh
+      run: . activate.sh && ./lint
