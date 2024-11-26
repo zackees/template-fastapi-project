@@ -11,7 +11,7 @@ This template is used by https://github.com/zackees/make-fastapi-app
 
 #### Lint
 
-[![Actions Status](../../workflows/Lint/badge.svg)](../../actions/workflows/lint.yml)
+[![Lint](https://github.com/zackees/template-fastapi-project/actions/workflows/lint.yml/badge.svg)](https://github.com/zackees/template-fastapi-project/actions/workflows/lint.yml)
 
 Example FastAPI Project with Docker, ready for Render.com / DigitalOcean
 
