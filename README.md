@@ -5,9 +5,10 @@ This template is used by https://github.com/zackees/make-fastapi-app
 
 #### Platform tests
 
-[![Actions Status](../../workflows/MacOS_Tests/badge.svg)](../../actions/workflows/test_macos.yml)
-[![Actions Status](../../workflows/Win_Tests/badge.svg)](../../actions/workflows/test_win.yml)
-[![Lint](https://github.com/zackees/template-fastapi-project/actions/workflows/lint.yml/badge.svg)](https://github.com/zackees/template-fastapi-project/actions/workflows/lint.yml)
+
+[![MacOS_Tests](https://github.com/zackees/template-fastapi-project/actions/workflows/test_macos.yml/badge.svg)](https://github.com/zackees/template-fastapi-project/actions/workflows/test_macos.yml)
+[![Ubuntu_Tests](https://github.com/zackees/template-fastapi-project/actions/workflows/test_ubuntu.yml/badge.svg)](https://github.com/zackees/template-fastapi-project/actions/workflows/test_ubuntu.yml)
+[![Win_Tests](https://github.com/zackees/template-fastapi-project/actions/workflows/test_win.yml/badge.svg)](https://github.com/zackees/template-fastapi-project/actions/workflows/test_win.yml)
 
 #### Lint
 
