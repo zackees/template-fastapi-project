@@ -7,7 +7,7 @@ This template is used by https://github.com/zackees/make-fastapi-app
 
 [![Actions Status](../../workflows/MacOS_Tests/badge.svg)](../../actions/workflows/test_macos.yml)
 [![Actions Status](../../workflows/Win_Tests/badge.svg)](../../actions/workflows/test_win.yml)
-[![Actions Status](../../workflows/Ubuntu_Tests/badge.svg)](../../actions/workflows/test_ubuntu.yml)
+[![Lint](https://github.com/zackees/template-fastapi-project/actions/workflows/lint.yml/badge.svg)](https://github.com/zackees/template-fastapi-project/actions/workflows/lint.yml)
 
 #### Lint
 
