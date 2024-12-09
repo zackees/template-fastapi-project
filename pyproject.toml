@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 name = "template-fastapi-project"
 description = "Change this to a description of your project."
 readme = "README.md"
-requires-python = ">=3.7"
+requires-python = ">=3.10"
 keywords = ["template-fastapi-project"]
 license = { text = "BSD 3-Clause License" }
 classifiers = ["Programming Language :: Python :: 3"]
