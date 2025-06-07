@@ -14,7 +14,7 @@
     },
     "python.linting.pylintEnabled": true,
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestEnabled": true,
+    "python.testing.autoTestDiscoverOnSaveEnabled": true,
     "files.eol": "\n", // Unix
     "editor.tabSize": 4,
     "editor.insertSpaces": true,
